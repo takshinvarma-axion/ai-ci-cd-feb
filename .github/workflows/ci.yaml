@@ -25,3 +25,6 @@ jobs:
 
     - name: Run tests
       run: pytest tests --verbose
+
+    - name: Run sample.py
+      run: python sample.py
