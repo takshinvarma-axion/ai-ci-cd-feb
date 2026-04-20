@@ -2,6 +2,8 @@ import unittest
 import sys
 from pathlib import Path
 
+import os
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from calculator import add, subtract, multiply, divide, square, square_root, cube, cube_root
 
@@ -17,6 +19,9 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(add(1, 0), 1)
         self.assertEqual(add(-1, 0), -1)
     
+    print(os.getenv("API_KEY"))
+    def test_api_key(self):
+        self.assertIsNotNone(os.getenv("API_KEY"))
     # test case that fails for the add function
     def test_add_failure(self):
         self.assertEqual(add(1, 2), 4)
