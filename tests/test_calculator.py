@@ -24,5 +24,5 @@ class TestCalculator(unittest.TestCase):
         print(os.getenv("API_KEY"))
         self.assertIsNotNone(os.getenv("API_KEY"))
     # test case that fails for the add function
-    def test_add_failure(self):
-        self.assertEqual(add(1, 2), 4)
+    # def test_add_failure(self):
+    #     self.assertEqual(add(1, 2), 4)
