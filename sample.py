@@ -1,15 +1,7 @@
 import os
-
 from langchain_openai import AzureChatOpenAI
 import dotenv
 dotenv.load_dotenv()
-
-REQUIRED_ENV_VARS = (
-    "AZURE_OPENAI_API_KEY",
-    "AZURE_OPENAI_ENDPOINT",
-    "AZURE_OPENAI_DEPLOYMENT",
-    "OPENAI_API_VERSION",
-)
 
 
 def main():
