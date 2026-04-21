@@ -13,14 +13,6 @@ REQUIRED_ENV_VARS = (
 
 
 def main():
-    missing = [name for name in REQUIRED_ENV_VARS if not os.getenv(name)]
-    if missing:
-        print(
-            "Skipping Azure OpenAI call: missing required environment variables: "
-            + ", ".join(missing)
-        )
-        return
-
     llm = AzureChatOpenAI(
         azure_deployment=os.environ["AZURE_OPENAI_DEPLOYMENT"],
         temperature=0,
