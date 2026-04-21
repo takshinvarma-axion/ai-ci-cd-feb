@@ -11,7 +11,7 @@ def main():
     )
 
     try:
-        print(llm.invoke("What is the capital of France?").content)
+        print(llm.invoke("Give me a funny joke about a programmer").content)
     except Exception as exc:
         print(f"Skipping Azure OpenAI call due to connection/configuration error: {exc}")
 
