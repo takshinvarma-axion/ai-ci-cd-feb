@@ -30,29 +30,5 @@ jobs:
     - name: Run tests
       run: pytest tests --verbose
 
-    - name: Check Azure secret availability
-      id: azure_secrets
-      env:
-        AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
-        AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
-        AZURE_OPENAI_DEPLOYMENT: ${{ secrets.AZURE_OPENAI_DEPLOYMENT }}
-        OPENAI_API_VERSION: ${{ secrets.OPENAI_API_VERSION }}
-      run: |
-        missing=0
-        [ -n "$AZURE_OPENAI_API_KEY" ] || missing=1
-        [ -n "$AZURE_OPENAI_ENDPOINT" ] || missing=1
-        [ -n "$AZURE_OPENAI_DEPLOYMENT" ] || missing=1
-        [ -n "$OPENAI_API_VERSION" ] || missing=1
-        if [ "$missing" -eq 0 ]; then
-          echo "available=true" >> "$GITHUB_OUTPUT"
-        else
-          echo "available=false" >> "$GITHUB_OUTPUT"
-        fi
-
     - name: Run sample.py
-      if: steps.azure_secrets.outputs.available == 'true'
       run: python sample.py
-
-    - name: Skip sample.py (missing secrets)
-      if: steps.azure_secrets.outputs.available != 'true'
-      run: echo "Skipping sample.py because required Azure/OpenAI secrets are not available in this workflow run."
